@@ -13,23 +13,21 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <style>
-            /* Change the background color of the entire body */
+            /* Background and general styling */
             body {
                 background-color: #FCF9F9; /* baby pink */
                 font-family: 'Arial', sans-serif;
                 overflow-x: hidden;
             }
 
-            /* Set the header background image and remove content */
             header.bg-dark {
-                background-image: url('Images/Banner.png'); /* Updated banner image */
+                background-image: url('Images/Banner.png');
                 background-size: cover;
                 background-position: center;
                 height: 400px;
                 transition: background 0.5s ease-in-out;
             }
 
-            /* Ensure the container and any other content inside header is hidden */
             header.bg-dark .container,
             header.bg-dark h1,
             header.bg-dark p,
@@ -37,7 +35,6 @@
                 display: none;
             }
 
-            /* Sticky navbar */
             .navbar {
                 position: sticky;
                 top: 0;
@@ -45,15 +42,7 @@
                 transition: top 0.3s ease-in-out;
             }
 
-            .navbar .nav-link {
-                transition: transform 0.3s ease;
-            }
-
-            .navbar .nav-link:hover {
-                transform: scale(1.1);
-            }
-
-            /* Add space between products */
+            /* Product Card */
             .card {
                 margin-bottom: 30px;
                 transition: transform 0.3s ease;
@@ -64,41 +53,7 @@
                 box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
             }
 
-            /* Footer styling */
-            footer {
-                background-color: #333;
-                color: white;
-                padding: 2rem 0;
-            }
-
-            footer a {
-                color: white;
-                text-decoration: none;
-            }
-
-            footer a:hover {
-                text-decoration: underline;
-            }
-
-            /* Cart modal styling */
-            .cart-modal .modal-content {
-                padding: 20px;
-                animation: fadeIn 0.5s ease-out;
-            }
-
-            /* Fade-in animation for cart */
-            @keyframes fadeIn {
-                0% {
-                    opacity: 0;
-                    transform: translateY(10px);
-                }
-                100% {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-
-            /* Section titles styling */
+            /* Section Title */
             .section-title {
                 text-align: center;
                 font-size: 2rem;
@@ -107,6 +62,14 @@
                 font-weight: bold;
             }
 
+            /* Hide products by default for filtering */
+            .product {
+                display: none;
+            }
+
+            .product.active {
+                display: block;
+            }
         </style>
     </head>
     <body>
@@ -117,15 +80,15 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!" onclick="showAllProducts()">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#shop">All Products</a></li>
-                                <li><a class="dropdown-item" href="#snugglers">Snugglers</a></li>
-                                <li><a class="dropdown-item" href="#small-plushies">Small Plushies</a></li>
-                                <li><a class="dropdown-item" href="#big-plushies">Big Plushies</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="showAllProducts()">All Products</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filterProducts('Snugglers')">Snugglers</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filterProducts('Small Plushies')">Small Plushies</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filterProducts('Big Plushies')">Big Plushies</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -140,84 +103,101 @@
             </div>
         </nav>
 
-        <!-- Header with background image-->
+        <!-- Header-->
         <header class="bg-dark py-5"></header>
 
-        <!-- Section: All Products-->
-        <section id="shop" class="py-5">
+        <!-- Product Section -->
+        <section id="products" class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <!-- Product 1: Cow Snuggler -->
-                    <div class="col mb-5">
+
+                    <!-- Snugglers -->
+                    <div class="col mb-5 product Snugglers active">
                         <div class="card h-100">
-                            <img class="card-img-top" src="Images/CowSnuggler.jpg" alt="Cow Snuggler" />
+                            <img class="card-img-top" src="Images/CowSnuggler.jpg" alt="Purple Com Snuggler" />
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <h5 class="fw-bolder">Cow Snuggler</h5>
+                                    <h5 class="fw-bolder">Purple Com Snuggler</h5>
                                     30€
                                 </div>
                             </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <button class="btn btn-outline-dark mt-auto" onclick="addToCart('Cow Snuggler', 30)">Add to Cart</button>
-                                    <a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
-
-                    <!-- Product 2: Dino Snuggler -->
-                    <div class="col mb-5">
+                    <div class="col mb-5 product Snugglers">
                         <div class="card h-100">
-                            <img class="card-img-top" src="Images/DinoSnuggler.jpg" alt="Dino Snuggler" />
+                            <img class="card-img-top" src="Images/OrangeCowSnuggler.jpg" alt="Orange Cow Snuggler" />
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <h5 class="fw-bolder">Dino Snuggler</h5>
+                                    <h5 class="fw-bolder">Orange Cow Snuggler</h5>
                                     30€
                                 </div>
                             </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Big Plushies -->
+                    <div class="col mb-5 product Big Plushies">
+                        <div class="card h-100">
+                            <img class="card-img-top" src="Images/BlueDino.jpg" alt="Blue Dino" />
+                            <div class="card-body p-4">
                                 <div class="text-center">
-                                    <button class="btn btn-outline-dark mt-auto" onclick="addToCart('Dino Snuggler', 30)">Add to Cart</button>
-                                    <a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a>
+                                    <h5 class="fw-bolder">Blue Dino</h5>
+                                    25€
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Product 3: Booty Turtle -->
-                    <div class="col mb-5">
+                    <div class="col mb-5 product Big Plushies">
                         <div class="card h-100">
-                            <img class="card-img-top" src="Images/BootyTurtle.jpg" alt="Booty Turtle" />
+                            <img class="card-img-top" src="Images/GreenDino.jpg" alt="Green Dino" />
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <h5 class="fw-bolder">Booty Turtle</h5>
-                                    10€
-                                </div>
-                            </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <button class="btn btn-outline-dark mt-auto" onclick="addToCart('Booty Turtle', 10)">Add to Cart</button>
-                                    <a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a>
+                                    <h5 class="fw-bolder">Green Dino</h5>
+                                    25€
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Product 4: Hippo -->
-                    <div class="col mb-5">
+                    <div class="col mb-5 product Big Plushies">
                         <div class="card h-100">
-                            <img class="card-img-top" src="Images/hippo.jpg" alt="Hippo" />
+                            <img class="card-img-top" src="Images/BrownDino.jpg" alt="Brown Dino" />
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <h5 class="fw-bolder">Hippo</h5>
+                                    <h5 class="fw-bolder">Brown Dino</h5>
+                                    25€
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5 product Big Plushies">
+                        <div class="card h-100">
+                            <img class="card-img-top" src="Images/GrayDino.jpg" alt="Gray Dino" />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Gray Dino</h5>
+                                    25€
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5 product Big Plushies">
+                        <div class="card h-100">
+                            <img class="card-img-top" src="Images/BlueFlowerTurtle1.jpg" alt="Blue Flower Turtle" />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Blue Flower Turtle</h5>
                                     35€
                                 </div>
                             </div>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        </div>
+                    </div>
+                    <div class="col mb-5 product Big Plushies">
+                        <div class="card h-100">
+                            <img class="card-img-top" src="Images/GreenFlowerTurtle1.jpg" alt="Green Flower Turtle" />
+                            <div class="card-body p-4">
                                 <div class="text-center">
-                                    <button class="btn btn-outline-dark mt-auto" onclick="addToCart('Hippo', 35)">Add to Cart</button>
-                                    <a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a>
+                                    <h5 class="fw-bolder">Green Flower Turtle</h5>
+                                    35€
                                 </div>
                             </div>
                         </div>
@@ -225,17 +205,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Footer-->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col text-center">
-                        <p>© 2024 Vaders Crochet. All Rights Reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
 
         <!-- Modal Cart-->
         <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
@@ -257,16 +226,21 @@
         </div>
 
         <script>
-            let cart = [];
-            function addToCart(product, price) {
-                cart.push({ product, price });
-                document.getElementById('cart-count').innerText = cart.length;
-                let cartContent = cart.map(item => `${item.product} - ${item.price}€`).join('<br>');
-                document.getElementById('cart-items').innerHTML = cartContent || '<p>Your cart is empty.</p>';
+            function showAllProducts() {
+                document.querySelectorAll('.product').forEach(product => product.classList.add('active'));
+            }
+
+            function filterProducts(category) {
+                document.querySelectorAll('.product').forEach(product => {
+                    product.classList.remove('active');
+                    if (product.classList.contains(category)) {
+                        product.classList.add('active');
+                    }
+                });
             }
         </script>
 
-        <!-- Bootstrap JS (for modal)-->
+        <!-- Bootstrap JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
