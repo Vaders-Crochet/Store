@@ -21,7 +21,7 @@
 
             /* Set the header background image and remove content */
             header.bg-dark {
-                background-image: url('Images/Banner.png'); 
+                background-image: url('Images/Banner.png'); /* Updated banner image */
                 background-size: cover;
                 background-position: center;
                 height: 400px;
@@ -62,6 +62,11 @@
             footer a:hover {
                 text-decoration: underline;
             }
+
+            /* Cart modal styling */
+            .cart-modal .modal-content {
+                padding: 20px;
+            }
         </style>
     </head>
     <body>
@@ -85,19 +90,21 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
+                        <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#cartModal">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart-count">0</span>
                         </button>
                     </form>
                 </div>
             </div>
         </nav>
+
         <!-- Header with background image-->
         <header class="bg-dark py-5">
             <!-- No content inside header -->
         </header>
+
         <!-- Section-->
         <section class="py-5" id="shop">
             <div class="container px-4 px-lg-5 mt-5">
@@ -113,10 +120,14 @@
                                 </div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a></div>
+                                <div class="text-center">
+                                    <button class="btn btn-outline-dark mt-auto" onclick="addToCart('Cow Snuggler', 30)">Add to Cart</button>
+                                    <a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <!-- Product 2: Dino Snuggler -->
                     <div class="col mb-5">
                         <div class="card h-100">
@@ -128,10 +139,14 @@
                                 </div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a></div>
+                                <div class="text-center">
+                                    <button class="btn btn-outline-dark mt-auto" onclick="addToCart('Dino Snuggler', 30)">Add to Cart</button>
+                                    <a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <!-- Product 3: Booty Turtle -->
                     <div class="col mb-5">
                         <div class="card h-100">
@@ -143,14 +158,18 @@
                                 </div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a></div>
+                                <div class="text-center">
+                                    <button class="btn btn-outline-dark mt-auto" onclick="addToCart('Booty Turtle', 10)">Add to Cart</button>
+                                    <a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <!-- Product 4: Hippo -->
                     <div class="col mb-5">
                         <div class="card h-100">
-                            <img class="card-img-top" src="Images/hippo.jpg" alt="Hippo" /> <!-- Corrected image source -->
+                            <img class="card-img-top" src="Images/hippo.jpg" alt="Hippo" />
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <h5 class="fw-bolder">Hippo</h5>
@@ -158,13 +177,36 @@
                                 </div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a></div>
+                                <div class="text-center">
+                                    <button class="btn btn-outline-dark mt-auto" onclick="addToCart('Hippo', 35)">Add to Cart</button>
+                                    <a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Cart Modal-->
+        <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="cart-items">
+                        <p>Your cart is empty.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Proceed to Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer-->
         <footer>
             <div class="container text-center">
@@ -177,9 +219,32 @@
                 </div>
             </div>
         </footer>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <!-- Custom JavaScript for Cart-->
+        <script>
+            let cart = [];
+
+            // Function to add items to cart
+            function addToCart(product, price) {
+                cart.push({ product, price });
+                updateCartCount();
+            }
+
+            // Update cart count in navbar
+            function updateCartCount() {
+                const cartCount = document.getElementById("cart-count");
+                cartCount.textContent = cart.length;
+
+                // Update cart items in modal
+                const cartItems = document.getElementById("cart-items");
+                if (cart.length > 0) {
+                    cartItems.innerHTML = cart.map(item => `<p>${item.product} - €${item.price}</p>`).join('');
+                } else {
+                    cartItems.innerHTML = '<p>Your cart is empty.</p>';
+                }
+            }
+        </script>
     </body>
 </html>
