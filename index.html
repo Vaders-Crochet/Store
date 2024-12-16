@@ -111,97 +111,25 @@
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-                    <!-- Snugglers -->
+                    <!-- Example of a Product -->
                     <div class="col mb-5 product Snugglers active">
                         <div class="card h-100">
-                            <img class="card-img-top" src="Images/CowSnuggler.jpg" alt="Purple Cow Snuggler" />
+                            <img class="card-img-top" src="Images/CowSnuggler.jpg" alt="Purple Com Snuggler" />
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <h5 class="fw-bolder">Purple Cow Snuggler</h5>
-                                    30€
+                                    <h5 class="fw-bolder">Purple Com Snuggler</h5>
+                                    <p>30€</p>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5 product Snugglers">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="Images/OrangeCowSnuggler.jpg" alt="Orange Cow Snuggler" />
-                            <div class="card-body p-4">
                                 <div class="text-center">
-                                    <h5 class="fw-bolder">Orange Cow Snuggler</h5>
-                                    30€
+                                    <button class="btn btn-outline-dark me-2" onclick="addToCart('Purple Com Snuggler')">Add to Cart</button>
+                                    <button class="btn btn-dark" onclick="buyNow('Purple Com Snuggler')">Buy Now</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Big Plushies -->
-                    <div class="col mb-5 product Big Plushies">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="Images/BlueDino.jpg" alt="Blue Dino" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Blue Dino</h5>
-                                    25€
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5 product Big Plushies">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="Images/GreenDino.jpg" alt="Green Dino" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Green Dino</h5>
-                                    25€
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5 product Big Plushies">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="Images/BrownDino.jpg" alt="Brown Dino" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Brown Dino</h5>
-                                    25€
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5 product Big Plushies">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="Images/GrayDino.jpg" alt="Gray Dino" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Gray Dino</h5>
-                                    25€
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5 product Big Plushies">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="Images/BlueFlowerTurtle1.jpg" alt="Blue Flower Turtle" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Blue Flower Turtle</h5>
-                                    35€
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5 product Big Plushies">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="Images/GreenFlowerTurtle1.jpg" alt="Green Flower Turtle" />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">Green Flower Turtle</h5>
-                                    35€
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Add other products here following the same format -->
+
                 </div>
             </div>
         </section>
@@ -226,6 +154,8 @@
         </div>
 
         <script>
+            let cart = [];
+
             function showAllProducts() {
                 document.querySelectorAll('.product').forEach(product => product.classList.add('active'));
             }
@@ -237,6 +167,15 @@
                         product.classList.add('active');
                     }
                 });
+            }
+
+            function addToCart(productName) {
+                cart.push(productName);
+                document.getElementById('cart-count').textContent = cart.length;
+            }
+
+            function buyNow(productName) {
+                alert(`You bought ${productName}!`);
             }
         </script>
 
