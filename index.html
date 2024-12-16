@@ -19,38 +19,20 @@
                 font-family: 'Arial', sans-serif;
             }
 
-            /* Set the header background image */
+            /* Set the header background image and remove content */
             header.bg-dark {
                 background-image: url('Banner.png');
                 background-size: cover;
                 background-position: center;
                 height: 400px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                color: white;
             }
 
-            /* Hero section text */
-            header.bg-dark h1 {
-                font-size: 3rem;
-                font-weight: bold;
-            }
-
-            header.bg-dark p {
-                font-size: 1.25rem;
-            }
-
-            /* Add call-to-action button */
+            /* Ensure the container and any other content inside header is hidden */
+            header.bg-dark .container,
+            header.bg-dark h1,
+            header.bg-dark p,
             header.bg-dark .btn {
-                font-size: 1.25rem;
-                padding: 12px 30px;
-                background-color: #FFB6C1; /* Light pink */
-                border-radius: 30px;
-                color: white;
-                text-transform: uppercase;
-                letter-spacing: 1px;
+                display: none;
             }
 
             /* Sticky navbar */
@@ -63,12 +45,6 @@
             /* Add space between products */
             .card {
                 margin-bottom: 30px;
-            }
-
-            /* Product Badges */
-            .badge {
-                top: 1rem;
-                right: 1rem;
             }
 
             /* Footer styling */
@@ -118,13 +94,9 @@
                 </div>
             </div>
         </nav>
-        <!-- Header with background image and call-to-action-->
+        <!-- Header with background image-->
         <header class="bg-dark py-5">
-            <div>
-                <h1>Welcome to Vaders Crochet</h1>
-                <p>Browse our latest cozy creations and exclusive offers</p>
-                <a href="#shop" class="btn btn-light btn-lg">Shop Now</a>
-            </div>
+            <!-- No content inside header -->
         </header>
         <!-- Section-->
         <section class="py-5" id="shop">
@@ -133,11 +105,11 @@
                     <!-- Product 1: Cow Snuggler -->
                     <div class="col mb-5">
                         <div class="card h-100">
-                            <img class="card-img-top" src="Photoroom_20241216_113358.jpg" alt="Cow Snuggler" />
+                            <img class="card-img-top" src="Images/CowSnuggler.jpg" alt="Cow Snuggler" />
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <h5 class="fw-bolder">Cow Snuggler</h5>
-                                    35€
+                                    30€
                                 </div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -148,10 +120,40 @@
                     <!-- Product 2: Dino Snuggler -->
                     <div class="col mb-5">
                         <div class="card h-100">
-                            <img class="card-img-top" src="Photoroom_20241216_113226.jpg" alt="Dino Snuggler" />
+                            <img class="card-img-top" src="Images/DinoSnuggler.jpg" alt="Dino Snuggler" />
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <h5 class="fw-bolder">Dino Snuggler</h5>
+                                    30€
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 3: Booty Turtle -->
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" src="Images/BootyTurtle.jpg" alt="Booty Turtle" />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Booty Turtle</h5>
+                                    10€
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 4: Hippo -->
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" src="Images/Hippo.jpg" alt="Hippo" />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Hippo</h5>
                                     35€
                                 </div>
                             </div>
@@ -160,7 +162,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Additional products can go here -->
                 </div>
             </div>
         </section>
