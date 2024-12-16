@@ -16,19 +16,75 @@
             /* Change the background color of the entire body */
             body {
                 background-color: #FCF9F9; /* baby pink */
+                font-family: 'Arial', sans-serif;
             }
 
             /* Set the header background image */
             header.bg-dark {
                 background-image: url('Banner.png');
-                background-size: cover; 
-                background-position: center; 
+                background-size: cover;
+                background-position: center;
                 height: 400px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                color: white;
             }
 
-            /* Remove text from header */
-            header.bg-dark .container {
-                display: none;
+            /* Hero section text */
+            header.bg-dark h1 {
+                font-size: 3rem;
+                font-weight: bold;
+            }
+
+            header.bg-dark p {
+                font-size: 1.25rem;
+            }
+
+            /* Add call-to-action button */
+            header.bg-dark .btn {
+                font-size: 1.25rem;
+                padding: 12px 30px;
+                background-color: #FFB6C1; /* Light pink */
+                border-radius: 30px;
+                color: white;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            /* Sticky navbar */
+            .navbar {
+                position: sticky;
+                top: 0;
+                z-index: 9999;
+            }
+
+            /* Add space between products */
+            .card {
+                margin-bottom: 30px;
+            }
+
+            /* Product Badges */
+            .badge {
+                top: 1rem;
+                right: 1rem;
+            }
+
+            /* Footer styling */
+            footer {
+                background-color: #333;
+                color: white;
+                padding: 2rem 0;
+            }
+
+            footer a {
+                color: white;
+                text-decoration: none;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
             }
         </style>
     </head>
@@ -62,52 +118,45 @@
                 </div>
             </div>
         </nav>
-        <!-- Header with background image-->
+        <!-- Header with background image and call-to-action-->
         <header class="bg-dark py-5">
-            <!-- The content inside the header is hidden by CSS now -->
+            <div>
+                <h1>Welcome to Vaders Crochet</h1>
+                <p>Browse our latest cozy creations and exclusive offers</p>
+                <a href="#shop" class="btn btn-light btn-lg">Shop Now</a>
+            </div>
         </header>
         <!-- Section-->
-        <section class="py-5">
+        <section class="py-5" id="shop">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <!-- First Product: Cow Snuggler -->
+                    <!-- Product 1: Cow Snuggler -->
                     <div class="col mb-5">
                         <div class="card h-100">
-                            <!-- Product image-->
                             <img class="card-img-top" src="Photoroom_20241216_113358.jpg" alt="Cow Snuggler" />
-                            <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <!-- Product name-->
                                     <h5 class="fw-bolder">Cow Snuggler</h5>
-                                    <!-- Product price-->
                                     35€
                                 </div>
                             </div>
-                            <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Buy now</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a></div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Second Product: Dino Snuggler -->
+                    <!-- Product 2: Dino Snuggler -->
                     <div class="col mb-5">
                         <div class="card h-100">
-                            <!-- Product image-->
                             <img class="card-img-top" src="Photoroom_20241216_113226.jpg" alt="Dino Snuggler" />
-                            <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <!-- Product name-->
                                     <h5 class="fw-bolder">Dino Snuggler</h5>
-                                    <!-- Product price-->
                                     35€
                                 </div>
                             </div>
-                            <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Buy now</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Buy Now</a></div>
                             </div>
                         </div>
                     </div>
@@ -116,8 +165,16 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Vaders Crochet 2024</p></div>
+        <footer>
+            <div class="container text-center">
+                <p>&copy; Vaders Crochet 2024. All rights reserved.</p>
+                <p><a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+                <div>
+                    <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-pinterest"></i></a>
+                </div>
+            </div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
